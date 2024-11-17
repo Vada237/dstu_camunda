@@ -84,6 +84,11 @@
       <artifactId>postgresql</artifactId>
       <version>42.7.3</version>
     </dependency>
+
+    <dependency>
+      <groupId>org.camunda.connect</groupId>
+      <artifactId>camunda-connect-connectors-all</artifactId>
+    </dependency>
   </dependencies>
 
   <build>
