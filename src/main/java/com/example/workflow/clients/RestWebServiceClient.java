@@ -3,15 +3,21 @@ package com.example.workflow.clients;
 import org.camunda.connect.Connectors;
 import org.camunda.connect.httpclient.HttpConnector;
 import org.camunda.connect.httpclient.HttpResponse;
-import org.camunda.connect.httpclient.soap.SoapHttpConnector;
 
 public class RestWebServiceClient {
-    public static void main(String[] args) {
-        HttpConnector connector = Connectors.getConnector(HttpConnector.ID);
+    private final HttpConnector connector;
 
-        HttpResponse response = connector.createRequest().get().url("http://localhost:8081/api/reports/info/1").execute();
+    public RestWebServiceClient(HttpConnector connector) {
+        this.connector = Connectors.getConnector(HttpConnector.ID);;
+    }
 
-        String body = response.getResponse();
-        System.out.println(1);
+    public String sendRequest(String url) throws Exception {
+        HttpResponse response = this.connector.createRequest().get().url(url).execute();
+
+        if (response.getStatusCode() == 200) {
+            return response.getResponse();
+        }
+
+        throw new Exception("REST send request error");
     }
 }

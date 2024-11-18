@@ -4,26 +4,24 @@ import org.camunda.connect.Connectors;
 import org.camunda.connect.httpclient.soap.SoapHttpConnector;
 import org.camunda.connect.httpclient.soap.SoapHttpResponse;
 
-public class SoapWebServiceClient {
-    public static void main(String[] args) {
-        SoapHttpConnector soap = Connectors.getConnector(SoapHttpConnector.ID);
-        String envelope = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:user=\"http://user.services.example.org/\">\n" +
-                "   <soapenv:Header/>\n" +
-                "   <soapenv:Body>\n" +
-                "      <user:getUserById>\n" +
-                "         <arg0>1</arg0>\n" +
-                "      </user:getUserById>\n" +
-                "   </soapenv:Body>\n" +
-                "</soapenv:Envelope>";
-        SoapHttpResponse response = soap.createRequest()
-                .url("http://localhost:8010/wss/user")
-                .soapAction("getUserById")
-                .payload(envelope)
-                .execute();
+public abstract class SoapWebServiceClient {
+    protected final SoapHttpConnector connector;
+    protected final String url;
+    protected final String artifact;
 
-        Integer statusCode = response.getStatusCode();
-        String contentTypeHeader = response.getHeader("Content-Type");
-        String body = response.getResponse();
-        System.out.println(1);
+    public SoapWebServiceClient(String url, String artifact) {
+        this.url = url;
+        this.artifact = artifact;
+        this.connector = Connectors.getConnector(SoapHttpConnector.ID);
+    }
+
+    public String send(String url, String action, String payload) throws Exception {
+        SoapHttpResponse response = this.connector.createRequest().url(url).soapAction(action).payload(payload).execute();
+
+        if (response.getStatusCode() == 200) {
+            return response.getResponse();
+        }
+
+        throw new Exception("SOAP send request error");
     }
 }
