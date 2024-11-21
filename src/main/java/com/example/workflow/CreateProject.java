@@ -6,7 +6,6 @@ import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.springframework.stereotype.Component;
 
-import java.sql.Timestamp;
 
 @Component
 public class CreateProject implements JavaDelegate {

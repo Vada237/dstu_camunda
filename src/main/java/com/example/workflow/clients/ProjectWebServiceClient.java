@@ -1,8 +1,9 @@
 package com.example.workflow.clients;
 
+import com.example.workflow.parsers.ProjectParser;
+import com.example.workflow.viewModels.Project;
 
 
-import java.sql.Timestamp;
 
 public class ProjectWebServiceClient extends SoapWebServiceClient{
     public ProjectWebServiceClient() {
@@ -10,7 +11,8 @@ public class ProjectWebServiceClient extends SoapWebServiceClient{
     }
 
     public void createProject(String title, String startTime, String finishTime, int totalHours) throws Exception {
-        String payload = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:proj=\"http://project.services.example.org/\">\n" +
+        String payload = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" " +
+                "xmlns:proj=\"" + this.artifact + "/\">\n" +
                 "   <soapenv:Header/>\n" +
                 "   <soapenv:Body>\n" +
                 "      <proj:addProject>\n" +
@@ -25,5 +27,22 @@ public class ProjectWebServiceClient extends SoapWebServiceClient{
                 "</soapenv:Envelope>";
 
         this.send(this.url, "addProject", payload);
+    }
+
+    public Project[] getProjects() throws Exception {
+        String payload = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" " +
+                "xmlns:proj=\"" + this.artifact + "/\">\n" +
+                "   <soapenv:Header/>\n" +
+                "   <soapenv:Body>\n" +
+                "      <proj:getProjects/>\n" +
+                "   </soapenv:Body>\n" +
+                "</soapenv:Envelope>";
+
+        return ProjectParser.getProjects(this.send(this.url, "getProjects", payload));
+    }
+
+    public static void main(String[] args) throws Exception {
+        ProjectWebServiceClient client = new ProjectWebServiceClient();
+        client.createProject("10", "2024-20-11T10:10", "2024-10-10T:10:20", 1);
     }
 }
