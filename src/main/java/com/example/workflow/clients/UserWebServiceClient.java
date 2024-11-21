@@ -1,10 +1,14 @@
 package com.example.workflow.clients;
 
-import jakarta.xml.soap.*;
 
-import java.io.ByteArrayOutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import com.example.workflow.parsers.UserParser;
+import com.example.workflow.viewModels.User;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserWebServiceClient extends SoapWebServiceClient{
     public UserWebServiceClient() {
@@ -30,17 +34,17 @@ public class UserWebServiceClient extends SoapWebServiceClient{
         this.send(this.url, "createUser", payload);
     }
 
-    public void getUserById(int id) throws Exception {
-        String envelope = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" " +
-                "xmlns:user=\"" + this.artifact+ "\">\n" +
+    public User[] getAllUsers() throws Exception {
+        String payload = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" " +
+                "xmlns:user=\"" + this.artifact + "\">\n" +
                 "   <soapenv:Header/>\n" +
                 "   <soapenv:Body>\n" +
-                "      <user:getUserById>\n" +
-                "         <arg0>" + id + "</arg0>\n" +
-                "      </user:getUserById>\n" +
+                "      <user:getAll/>\n" +
                 "   </soapenv:Body>\n" +
                 "</soapenv:Envelope>";
 
-        String response = this.send(this.url, "getUserById", envelope);
+        String response = this.send(this.url, "getAll", payload);
+
+        return UserParser.getUsers(response);
     }
 }
