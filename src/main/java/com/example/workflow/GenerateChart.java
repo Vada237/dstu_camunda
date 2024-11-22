@@ -22,6 +22,7 @@ public class GenerateChart implements JavaDelegate {
 
         try (FileInputStream fis = new FileInputStream(file)){
             fis.readAllBytes();
+            delegateExecution.setVariable("download_path", filepath);
         } catch (Exception e) {
             throw new BpmnError("GenerateChartError");
         }
