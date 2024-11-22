@@ -7,7 +7,7 @@ import org.camunda.connect.httpclient.HttpResponse;
 public class RestWebServiceClient {
     private final HttpConnector connector;
 
-    public RestWebServiceClient(HttpConnector connector) {
+    public RestWebServiceClient() {
         this.connector = Connectors.getConnector(HttpConnector.ID);;
     }
 
