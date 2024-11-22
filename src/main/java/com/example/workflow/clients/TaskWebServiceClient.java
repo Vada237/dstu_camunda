@@ -42,8 +42,4 @@ public class TaskWebServiceClient extends SoapWebServiceClient {
         String response = this.send(this.url, "getAll", payload);
         return TaskParser.getTasks(response);
     }
-
-    public static void main (String[] args) {
-
-    }
 }

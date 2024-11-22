@@ -16,9 +16,26 @@ public class TaskParser {
         NodeList data = SoapParser.getItems(response);
 
         for (int i=0;i<data.getLength(); i++) {
-            Node x = data.item(i);
+            Node item = data.item(i);
+            Node countHoursNode = item.getFirstChild();
+            Node finishTimeNode = countHoursNode.getNextSibling();
+            Node idNode = finishTimeNode.getNextSibling();
+            Node startTimeNode = idNode.getNextSibling().getNextSibling().getNextSibling();
+            Node statusNode = startTimeNode.getNextSibling();
+            Node titleNode = statusNode.getNextSibling();
+
+            int countHours = Integer.parseInt(countHoursNode.getFirstChild().getNodeValue());
+            String finishTime = finishTimeNode.getFirstChild().getNodeValue();
+            int id = Integer.parseInt(idNode.getFirstChild().getNodeValue());
+            String startTime = startTimeNode.getFirstChild().getNodeValue();
+            String status = statusNode.getFirstChild().getNodeValue();
+            String title = titleNode.getFirstChild().getNodeValue();
+
+            tasks.add(new Task(
+                    id, title, startTime, finishTime, countHours, status
+            ));
         }
 
-        return new Task[0];
+        return tasks.toArray(new Task[0]);
     }
 }

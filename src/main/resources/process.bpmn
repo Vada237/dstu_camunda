@@ -134,7 +134,7 @@ totalHours: int
       <bpmn:outgoing>Flow_0nx7xxm</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="Flow_0p07ik9" sourceRef="Activity_0ou86hi" targetRef="Activity_1a8mdix" />
-    <bpmn:boundaryEvent id="Event_1rse570" name="ErrorNotFound" attachedToRef="Activity_1a8mdix">
+    <bpmn:boundaryEvent id="Event_1rse570" name="TasksNotFound" attachedToRef="Activity_1a8mdix">
       <bpmn:outgoing>Flow_1m77l0s</bpmn:outgoing>
       <bpmn:errorEventDefinition id="ErrorEventDefinition_0buk0ts" errorRef="Error_16y1f9r" />
     </bpmn:boundaryEvent>
@@ -214,7 +214,7 @@ totalHours: int
   <bpmn:error id="Error_16sywn4" name="Error_3rqh01k" errorCode="ProjectsNotFound" camunda:errorMessage="ProjectsNotFound" />
   <bpmn:error id="Error_00rlxoh" name="Error_3af89p1" errorCode="CreateTaskError" camunda:errorMessage="CreateTaskError" />
   <bpmn:error id="Error_0ne6n5n" name="Error_1livtd4" errorCode="UserNotFound" camunda:errorMessage="UserNotFound" />
-  <bpmn:error id="Error_16y1f9r" name="Error_19mjto2" errorCode="ErrorNotFound" camunda:errorMessage="ErrorNotFound" />
+  <bpmn:error id="Error_16y1f9r" name="Error_19mjto2" errorCode="TasksNotFound" camunda:errorMessage="ErrorNotFound" />
   <bpmn:error id="Error_0qq7zfy" name="Error_1shunpb" errorCode="AddTimeError" camunda:errorMessage="AddTimeError" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="dstu-camunda-process">
@@ -310,22 +310,6 @@ totalHours: int
       <bpmndi:BPMNShape id="Event_15lcin6_di" bpmnElement="Event_15lcin6">
         <dc:Bounds x="3892" y="199" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Association_07eq0jn_di" bpmnElement="Association_07eq0jn">
-        <di:waypoint x="3110" y="192" />
-        <di:waypoint x="3110" y="140" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Event_1rse570_di" bpmnElement="Event_1rse570">
-        <dc:Bounds x="2392" y="239" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="2433" y="282" width="74" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1q2fvyy_di" bpmnElement="Event_1q2fvyy">
-        <dc:Bounds x="2872" y="239" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="2915" y="282" width="69" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_15kad9q_di" bpmnElement="TextAnnotation_15kad9q">
         <dc:Bounds x="1860" y="274" width="100" height="30" />
         <bpmndi:BPMNLabel />
@@ -337,6 +321,22 @@ totalHours: int
       <bpmndi:BPMNShape id="TextAnnotation_0iipy1z_di" bpmnElement="TextAnnotation_0iipy1z">
         <dc:Bounds x="1820" y="90" width="100" height="41" />
         <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1ql63vo_di" bpmnElement="TextAnnotation_1ql63vo">
+        <dc:Bounds x="3060" y="110" width="100" height="30" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1q2fvyy_di" bpmnElement="Event_1q2fvyy">
+        <dc:Bounds x="2872" y="239" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2915" y="282" width="69" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1rse570_di" bpmnElement="Event_1rse570">
+        <dc:Bounds x="2392" y="239" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2434" y="282" width="77" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0sh2bhp_di" bpmnElement="Event_0sh2bhp">
         <dc:Bounds x="1762" y="239" width="36" height="36" />
@@ -457,18 +457,6 @@ totalHours: int
         <di:waypoint x="1660" y="240" />
         <di:waypoint x="1730" y="240" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Association_03tmcnc_di" bpmnElement="Association_03tmcnc">
-        <di:waypoint x="2054" y="217" />
-        <di:waypoint x="2054" y="126" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Association_0q1bsm8_di" bpmnElement="Association_0q1bsm8">
-        <di:waypoint x="1949" y="203" />
-        <di:waypoint x="1891" y="131" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Association_15g5thr_di" bpmnElement="Association_15g5thr">
-        <di:waypoint x="1960" y="356" />
-        <di:waypoint x="1921" y="304" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0p07ik9_di" bpmnElement="Flow_0p07ik9">
         <di:waypoint x="2220" y="217" />
         <di:waypoint x="2360" y="217" />
@@ -500,10 +488,6 @@ totalHours: int
         <di:waypoint x="2940" y="217" />
         <di:waypoint x="3085" y="217" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="TextAnnotation_1ql63vo_di" bpmnElement="TextAnnotation_1ql63vo">
-        <dc:Bounds x="3060" y="110" width="100" height="30" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0mt6n37_di" bpmnElement="Flow_0mt6n37">
         <di:waypoint x="3110" y="242" />
         <di:waypoint x="3110" y="360" />
@@ -530,6 +514,22 @@ totalHours: int
       <bpmndi:BPMNEdge id="Flow_0c78jn3_di" bpmnElement="Flow_0c78jn3">
         <di:waypoint x="3780" y="217" />
         <di:waypoint x="3892" y="217" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_03tmcnc_di" bpmnElement="Association_03tmcnc">
+        <di:waypoint x="2054" y="217" />
+        <di:waypoint x="2054" y="126" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0q1bsm8_di" bpmnElement="Association_0q1bsm8">
+        <di:waypoint x="1949" y="203" />
+        <di:waypoint x="1891" y="131" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_15g5thr_di" bpmnElement="Association_15g5thr">
+        <di:waypoint x="1960" y="356" />
+        <di:waypoint x="1921" y="304" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_07eq0jn_di" bpmnElement="Association_07eq0jn">
+        <di:waypoint x="3110" y="192" />
+        <di:waypoint x="3110" y="140" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

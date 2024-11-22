@@ -16,8 +16,8 @@ public class ProjectParser {
         NodeList data = SoapParser.getItems(response);
 
         for (int i=0;i<data.getLength(); i++) {
-            Node x = data.item(i);
-            Node idNode = x.getFirstChild().getNextSibling();
+            Node item = data.item(i);
+            Node idNode = item.getFirstChild().getNextSibling();
             Node titleNode = idNode.getNextSibling().getNextSibling();
             int id = Integer.parseInt(idNode.getFirstChild().getNodeValue());
             String title = titleNode.getFirstChild().getNodeValue();

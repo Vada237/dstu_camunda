@@ -5,14 +5,16 @@ public class Task {
     private String title;
     private String startTime;
     private String finishTime;
-    private String countHours;
+    private int countHours;
+    private String status;
 
-    public Task(int id, String title, String startTime, String finishTime, String countHours) {
+    public Task(int id, String title, String startTime, String finishTime, int countHours, String status) {
         this.id = id;
         this.title = title;
         this.startTime = startTime;
         this.finishTime = finishTime;
         this.countHours = countHours;
+        this.status = status;
     }
 
     public int getId() {
@@ -47,11 +49,19 @@ public class Task {
         this.finishTime = finishTime;
     }
 
-    public String getCountHours() {
+    public int getCountHours() {
         return countHours;
     }
 
-    public void setCountHours(String countHours) {
+    public void setCountHours(int countHours) {
         this.countHours = countHours;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

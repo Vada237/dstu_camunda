@@ -16,8 +16,8 @@ public class UserParser {
         NodeList data = SoapParser.getItems(response);
 
         for (int i=0;i<data.getLength(); i++) {
-            Node x = data.item(i);
-            Node firstNameNode = x.getFirstChild();
+            Node item = data.item(i);
+            Node firstNameNode = item.getFirstChild();
             Node idNode = firstNameNode.getNextSibling();
             Node secondNameNode = idNode.getNextSibling();
 
