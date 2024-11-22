@@ -40,9 +40,4 @@ public class ProjectWebServiceClient extends SoapWebServiceClient{
 
         return ProjectParser.getProjects(this.send(this.url, "getProjects", payload));
     }
-
-    public static void main(String[] args) throws Exception {
-        ProjectWebServiceClient client = new ProjectWebServiceClient();
-        client.createProject("10", "2024-20-11T10:10", "2024-10-10T:10:20", 1);
-    }
 }
