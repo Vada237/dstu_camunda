@@ -214,7 +214,7 @@ totalHours: int
   <bpmn:error id="Error_16sywn4" name="Error_3rqh01k" errorCode="ProjectsNotFound" camunda:errorMessage="ProjectsNotFound" />
   <bpmn:error id="Error_00rlxoh" name="Error_3af89p1" errorCode="CreateTaskError" camunda:errorMessage="CreateTaskError" />
   <bpmn:error id="Error_0ne6n5n" name="Error_1livtd4" errorCode="UserNotFound" camunda:errorMessage="UserNotFound" />
-  <bpmn:error id="Error_16y1f9r" name="Error_19mjto2" errorCode="TasksNotFound" camunda:errorMessage="ErrorNotFound" />
+  <bpmn:error id="Error_16y1f9r" name="Error_19mjto2" errorCode="TasksNotFound" camunda:errorMessage="TasksNotFound" />
   <bpmn:error id="Error_0qq7zfy" name="Error_1shunpb" errorCode="AddTimeError" camunda:errorMessage="AddTimeError" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="dstu-camunda-process">
